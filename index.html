@@ -3,13 +3,13 @@
 *{box-sizing:border-box}body{margin:0;background:#f4f7fb;color:#152e49;font:15px/1.45 "Segoe UI",Arial,sans-serif}header{background:#092e52;color:white;padding:18px max(5vw,18px);display:flex;align-items:center;gap:13px}header b{background:#a9e7ec;color:#093955;padding:8px 12px;border-radius:8px;letter-spacing:.07em}header span{margin-left:auto;color:#b8d3de}main{max-width:1360px;margin:auto;padding:32px 4vw}h1{font-size:clamp(30px,4vw,46px);margin:0;letter-spacing:-.04em}h2{font-size:20px;margin:0 0 12px}.bar,.filters,nav,.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.bar{justify-content:space-between;margin-bottom:20px}.filters{margin:12px 0 20px}button,select,input{font:inherit;border:1px solid #bbccdb;background:white;border-radius:7px;padding:9px 12px;color:inherit}button{cursor:pointer;font-weight:600}button:hover{background:#e9f3fa}.primary,nav button[aria-current=true]{background:#12518c;color:white;border-color:#12518c}label{display:grid;gap:3px;font-size:13px;font-weight:600}nav{border-bottom:1px solid #cbd9e5;margin-bottom:18px;padding:0 0 12px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:12px}.card,article{background:white;border:1px solid #d4e1ec;border-radius:12px;padding:20px}.card:first-child{background:#103f68;color:white}.card strong{display:block;font-size:32px;letter-spacing:-.04em}.card small,small{font-size:12px}article{margin-top:16px;overflow:auto}table{width:100%;border-collapse:collapse;font-size:14px}td,th{text-align:left;padding:11px 10px;border-bottom:1px solid #dfe8ef}th{font-size:12px;color:#54677f;background:#f5f8fb}tr:last-child td{border-bottom:0}.track{display:inline-block;background:#e0eaf2;width:85px;height:7px;border-radius:5px;margin-right:7px}.track i{display:block;height:100%;background:#137e8b;border-radius:5px}.note{color:#4b647c}.pill{display:inline-block;border-radius:4px;background:#edf3f8;padding:3px 6px;white-space:nowrap}.pending{background:#fff0d7;color:#704a09}.ok{background:#dff4ec;color:#14684e}dialog{border:0;border-radius:12px;padding:25px;width:min(510px,94vw);color:inherit}dialog::backdrop{background:#0b243699}dialog label{margin:14px 0}summary{cursor:pointer}#msg{margin:5px 0;color:#164e64;font-weight:600}button:disabled{opacity:.5}select{max-width:100%}@media(max-width:650px){main{padding:20px 12px}.card,article{padding:13px}.bar{align-items:flex-start}.cards{grid-template-columns:1fr 1fr}.card strong{font-size:26px}header span{display:none}}
 
 .imports{display:flex;gap:16px;align-items:center;flex-wrap:wrap;background:#e8f1fb;border:1px solid #c4d7ea;padding:16px 20px;border-radius:12px}.imports label{display:block;font-size:16px}.imports small{display:block;color:#415d77;margin-top:3px}.imports .secondary{margin-left:auto}.board{border-collapse:separate;border-spacing:4px;min-width:460px}.board td,.board th{text-align:center;border:0}.board td:first-child,.board th:first-child{text-align:left;position:sticky;left:0;background:white;z-index:1;white-space:nowrap}.board td{padding:0}.board button{display:block;width:100%;min-width:100px;border:0;padding:10px 8px;border-radius:6px}.board strong,.board small{display:block}.board strong{font-size:19px}.board .classe-A{background:#05fe40;color:#14251b}.board .classe-B{background:#f3df06;color:#232004}.board .classe-C{background:#f48a00;color:#281a09}.board .missing{color:#788697}.board button:hover{outline:2px solid #38648a}.filters{padding-top:4px}h2 small{font-weight:400}.imports button{min-height:44px}@media(max-width:650px){.imports .secondary{margin-left:0}.board td:first-child{font-size:12px}}
-button.danger-outline{color:#992c35;border-color:#d6a4aa}button.danger{background:#a12836;color:white}button.danger:hover{background:#841f2a}</style>
+button.danger-outline{color:#992c35;border-color:#d6a4aa}button.danger{background:#a12836;color:white}button.danger:hover{background:#841f2a}.monthly-class{padding:4px 12px;border-radius:5px;font-weight:700}.class-A{background:#05fe40}.class-B{background:#f3df06}.class-C{background:#f48a00}</style>
 <header><b>OIA</b> Operação de distribuição <span>Base Oiapoque · Amapá</span></header><main>
 <div class="bar"><h1>Produção diária por equipe</h1></div>
 <div class="imports"><div><label for="loadActs">Base diária de atividades</label><small>Selecione uma ou mais planilhas Atividades-Oiapoque (.xlsx).</small></div><button class="primary" id="loadActs">Importar base diária</button><button id="deleteBase" class="danger-outline">Excluir base diária</button><button class="secondary" id="loadRates">Importar tabela de referência</button></div>
 <input hidden type="file" accept=".xlsx" multiple id="files"><input hidden type="file" accept=".xlsx" id="rateFile"><div id="msg" role="status"></div>
 <div class="filters"><label>Competência<select id="month"></select></label><label>Dia de produção<select id="day"></select></label><label>Equipe<select id="team"></select></label></div>
-<nav aria-label="Seções"><button data-tab="summary">Visão diária</button><button data-tab="activities">Atividades</button><button data-tab="review">Conferência</button><button data-tab="catalog">Tabela UPS</button></nav><section id="content"></section>
+<nav aria-label="Seções"><button data-tab="summary">Visão diária</button><button data-tab="monthly">Resumo mensal</button><button data-tab="activities">Atividades</button><button data-tab="review">Conferência</button><button data-tab="catalog">Tabela UPS</button></nav><section id="content"></section>
 <dialog id="modal"><h2>Conferir atividade</h2><p id="context"></p><label>Serviço apurado<select id="choice"></select></label><label>Justificativa<input id="reason" maxlength="180" placeholder="Informe o critério utilizado"></label><div class="controls"><button id="save" class="primary">Salvar classificação</button><button id="cancel">Fechar</button></div><p id="err"></p></dialog><dialog id="deleteDialog" aria-labelledby="deleteTitle"><h2 id="deleteTitle">Excluir base diária</h2><label>Dia da base<select id="deleteDate"></select></label><p id="deleteInfo"></p><div class="controls"><button id="cancelDelete" autofocus>Cancelar</button><button id="confirmDelete" class="danger">Confirmar exclusão</button></div><p role="alert" id="deleteError"></p></dialog></main>
 <script>
 /*!
@@ -115,12 +115,35 @@ function assess(r){
 }
 function table(headers,body){return '<table><thead><tr>'+headers.map(h=>'<th>'+esc(h)+'</th>').join('')+'</tr></thead><tbody>'+body+'</tbody></table>'}
 const td=(...cells)=>'<tr>'+cells.map(c=>'<td>'+c+'</td>').join('')+'</tr>';
+function monthlySummary(rows){
+ const teams=new Map();
+ for(const {r,a} of rows){
+  if(norm(r.team)==='OIAPOQUE')continue;
+  if(!teams.has(r.team))teams.set(r.team,{name:r.team,days:new Set(),cents:0,pending:0});
+  const team=teams.get(r.team);
+  team.days.add(r.date);
+  team.cents+=Math.round(a[2]*100);
+  if(a[0]==='Conferir')team.pending++;
+ }
+ const list=[...teams.values()];
+ const avg=t=>t.cents/(100*t.days.size);
+ list.sort((a,b)=>avg(b)-avg(a)||a.name.localeCompare(b.name));
+ const total=list.reduce((n,t)=>n+t.cents,0)/100;
+ const days=list.reduce((n,t)=>n+t.days.size,0);
+ const cards=[['Média diária por equipe',days?fmt(total/days)+' UPS':'—'],['UPS acumuladas',fmt(total)],['Equipes com registros',list.length]];
+ const lines=list.map(t=>{
+  const mean=avg(t),group=level(mean);
+  return td(esc(t.name),t.days.size,fmt(t.cents/100),'<b>'+fmt(mean)+'</b>','<span class="monthly-class class-'+group+'">'+group+'</span>',fmt(mean/42*100)+'%',t.pending)
+ }).join('');
+ return '<div class="cards">'+cards.map(([name,value])=>'<div class="card">'+name+'<strong>'+value+'</strong></div>').join('')+'</div><article><h2>Média de UPS por equipe · '+esc($('month').selectedOptions[0]?.text||'Sem competência')+'</h2><p class="note">Cada equipe conta um dia por data com registros, inclusive quando a produção é zero. A média geral divide as UPS acumuladas pela soma desses dias de todas as equipes selecionadas.</p>'+(list.length?table(['Equipe','Dias com registros','UPS acumuladas','Média UPS/dia','Classe','Meta de 42 UPS','A conferir'],lines):'<p>Sem registros atribuídos a equipes nesta seleção.</p>')+'</article>'
+}
 function render(){
+ $('day').parentElement.style.display=tab==='monthly'?'none':'';
  document.querySelectorAll('[data-tab]').forEach(b=>b.setAttribute('aria-current',b.dataset.tab===tab));
- const rows=state.rows.filter(r=>r.date.startsWith($('month').value)&&(!$('day').value||r.date===$('day').value)&&(!$('team').value||r.team===$('team').value)).map(r=>({r,a:assess(r)}));
+ const rows=state.rows.filter(r=>r.date.startsWith($('month').value)&&(tab==='monthly'||!$('day').value||r.date===$('day').value)&&(!$('team').value||r.team===$('team').value)).map(r=>({r,a:assess(r)}));
  const sum=list=>list.reduce((v,x)=>v+Math.round(x.a[2]*100),0)/100;
  const count=(list,s)=>list.filter(x=>x.a[0]===s).length;
- const panel=$('content');if(tab==='summary'){
+ const panel=$('content');if(tab==='monthly'){panel.innerHTML=monthlySummary(rows);return}if(tab==='summary'){
  const days=[...new Set(state.rows.filter(r=>r.date.startsWith($('month').value)&&(!$('day').value||r.date===$('day').value)).map(r=>r.date))].sort();
  const teams=[...new Set(rows.map(x=>x.r.team))].filter(t=>norm(t)!=='OIAPOQUE').sort();
  const cards=[['UPS apuradas',fmt(sum(rows))],['Serviços pontuados',count(rows,'Pontuada')],['A conferir',count(rows,'Conferir')],['Registros no período',rows.length]];
